@@ -8,39 +8,85 @@ anchor_bottom = 1.0
 script = ExtResource("1_chron01")
 
 [node name="Panel" type="PanelContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.03
+anchor_top = 0.03
+anchor_right = 0.97
+anchor_bottom = 0.97
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="Panel"]
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_bottom = 14
 
-[node name="Title" type="Label" parent="Panel/VBox"]
-text = "── 年代記 ──"
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderRow" type="HBoxContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/Margin/VBox/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "― 年代記 ―"
 theme_override_font_sizes/font_size = 22
 
-[node name="FilterRow" type="HBoxContainer" parent="Panel/VBox"]
-
-[node name="FilterLabel" type="Label" parent="Panel/VBox/FilterRow"]
-text = "表示:"
-
-[node name="FilterOption" type="OptionButton" parent="Panel/VBox/FilterRow"]
-custom_minimum_size = Vector2(250, 0)
-
-[node name="GenCountLabel" type="Label" parent="Panel/VBox/FilterRow"]
-text = "計0世代"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBox"]
-size_flags_vertical = 3
-custom_minimum_size = Vector2(0, 400)
-
-[node name="TextDisplay" type="RichTextLabel" parent="Panel/VBox/ScrollContainer"]
-size_flags_horizontal = 3
-size_flags_vertical = 3
-bbcode_enabled = true
-fit_content = true
-text = "年代記を読み込み中..."
-
-[node name="CloseButton" type="Button" parent="Panel/VBox"]
+[node name="CloseButton" type="Button" parent="Panel/Margin/VBox/HeaderRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 36)
 text = "閉じる"
 
-[connection signal="item_selected" from="Panel/VBox/FilterRow/FilterOption" to="." method="_on_filter_option_item_selected"]
-[connection signal="pressed" from="Panel/VBox/CloseButton" to="." method="_on_close_button_pressed"]
+[node name="InfoLabel" type="Label" parent="Panel/Margin/VBox"]
+layout_mode = 2
+text = "第1世代 | 創業 0年"
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="Sep1" type="HSeparator" parent="Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="FilterRow" type="HBoxContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FilterLabel" type="Label" parent="Panel/Margin/VBox/FilterRow"]
+layout_mode = 2
+text = "表示世代:"
+vertical_alignment = 1
+
+[node name="FilterOption" type="OptionButton" parent="Panel/Margin/VBox/FilterRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(220, 36)
+
+[node name="FilterSpacer" type="Control" parent="Panel/Margin/VBox/FilterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GenCountLabel" type="Label" parent="Panel/Margin/VBox/FilterRow"]
+layout_mode = 2
+text = "計0世代"
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="Sep2" type="HSeparator" parent="Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextDisplay" type="RichTextLabel" parent="Panel/Margin/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "[color=#888888]年代記を読み込み中...[/color]"
+theme_override_font_sizes/normal_font_size = 14
+
+[connection signal="item_selected" from="Panel/Margin/VBox/FilterRow/FilterOption" to="." method="_on_filter_option_item_selected"]
+[connection signal="pressed" from="Panel/Margin/VBox/HeaderRow/CloseButton" to="." method="_on_close_button_pressed"]
