@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2char000001"]
+
+[ext_resource type="Script" path="res://scenes/character/Character.gd" id="1_char01"]
+
+[node name="Character" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_char01")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+text = "── キャラクター情報 ──"
+theme_override_font_sizes/font_size = 20
+
+[node name="NameLabel" type="Label" parent="Panel/VBox"]
+text = "名前: ―"
+
+[node name="GenLabel" type="Label" parent="Panel/VBox"]
+text = "世代: ―"
+
+[node name="YearLabel" type="Label" parent="Panel/VBox"]
+text = "活動開始: ―年"
+
+[node name="SkillsSection" type="VBoxContainer" parent="Panel/VBox"]
+
+[node name="SectionTitle" type="Label" parent="Panel/VBox/SkillsSection"]
+text = "【スキル】（最大3つ）"
+
+[node name="SkillsList" type="VBoxContainer" parent="Panel/VBox/SkillsSection"]
+
+[node name="ItemsSection" type="VBoxContainer" parent="Panel/VBox"]
+
+[node name="SectionTitle" type="Label" parent="Panel/VBox/ItemsSection"]
+text = "【所持品】（最大2つ）"
+
+[node name="ItemsList" type="VBoxContainer" parent="Panel/VBox/ItemsSection"]
+
+[node name="AchievementsSection" type="VBoxContainer" parent="Panel/VBox"]
+
+[node name="SectionTitle" type="Label" parent="Panel/VBox/AchievementsSection"]
+text = "【功績】"
+
+[node name="AchievementsList" type="VBoxContainer" parent="Panel/VBox/AchievementsSection"]
+
+[node name="AddSkillSection" type="HBoxContainer" parent="Panel/VBox"]
+
+[node name="Label" type="Label" parent="Panel/VBox/AddSkillSection"]
+text = "スキル追加:"
+
+[node name="SkillNameInput" type="LineEdit" parent="Panel/VBox/AddSkillSection"]
+placeholder_text = "スキル名"
+custom_minimum_size = Vector2(150, 0)
+
+[node name="CategoryOption" type="OptionButton" parent="Panel/VBox/AddSkillSection"]
+
+[node name="AddSkillButton" type="Button" parent="Panel/VBox/AddSkillSection"]
+text = "追加"
+
+[node name="AddItemSection" type="HBoxContainer" parent="Panel/VBox"]
+
+[node name="Label" type="Label" parent="Panel/VBox/AddItemSection"]
+text = "アイテム追加:"
+
+[node name="ItemNameInput" type="LineEdit" parent="Panel/VBox/AddItemSection"]
+placeholder_text = "アイテム名"
+custom_minimum_size = Vector2(150, 0)
+
+[node name="HeirloomCheck" type="CheckBox" parent="Panel/VBox/AddItemSection"]
+text = "家宝"
+
+[node name="AddItemButton" type="Button" parent="Panel/VBox/AddItemSection"]
+text = "追加"
+
+[node name="CloseButton" type="Button" parent="Panel/VBox"]
+text = "閉じる"
+
+[connection signal="pressed" from="Panel/VBox/AddSkillSection/AddSkillButton" to="." method="_on_add_skill_button_pressed"]
+[connection signal="pressed" from="Panel/VBox/AddItemSection/AddItemButton" to="." method="_on_add_item_button_pressed"]
+[connection signal="pressed" from="Panel/VBox/CloseButton" to="." method="_on_close_button_pressed"]

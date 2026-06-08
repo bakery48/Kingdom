@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5gall000001"]
+
+[ext_resource type="Script" path="res://scenes/gallery/Gallery.gd" id="1_gall01"]
+
+[node name="Gallery" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_gall01")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+
+[node name="HeaderRow" type="HBoxContainer" parent="Panel/VBox"]
+
+[node name="Title" type="Label" parent="Panel/VBox/HeaderRow"]
+text = "── 肖像画廊 ──"
+theme_override_font_sizes/font_size = 22
+size_flags_horizontal = 3
+
+[node name="GenCountLabel" type="Label" parent="Panel/VBox/HeaderRow"]
+text = "先祖一覧（0名）"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBox"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 350)
+
+[node name="Grid" type="GridContainer" parent="Panel/VBox/ScrollContainer"]
+size_flags_horizontal = 3
+columns = 4
+
+[node name="DetailPanel" type="VBoxContainer" parent="Panel/VBox"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+
+[node name="DetailTitle" type="Label" parent="Panel/VBox/DetailPanel"]
+text = "【詳細】"
+
+[node name="DetailLabel" type="RichTextLabel" parent="Panel/VBox/DetailPanel"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 150)
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="CloseDetailButton" type="Button" parent="Panel/VBox/DetailPanel"]
+text = "詳細を閉じる"
+
+[node name="CloseButton" type="Button" parent="Panel/VBox"]
+text = "閉じる"
+
+[connection signal="pressed" from="Panel/VBox/DetailPanel/CloseDetailButton" to="." method="_on_close_detail_button_pressed"]
+[connection signal="pressed" from="Panel/VBox/CloseButton" to="." method="_on_close_button_pressed"]

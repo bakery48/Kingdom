@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1main000001"]
+
+[ext_resource type="Script" path="res://scenes/main/Main.gd" id="1_main01"]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main01")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="Title" type="Label" parent="VBox"]
+text = "アルデン家の年代記"
+theme_override_font_sizes/font_size = 28
+
+[node name="NewGamePanel" type="VBoxContainer" parent="VBox"]
+visible = false
+
+[node name="Label" type="Label" parent="VBox/NewGamePanel"]
+text = "一族の名前を入力してください:"
+
+[node name="ClanNameInput" type="LineEdit" parent="VBox/NewGamePanel"]
+placeholder_text = "アルデン"
+custom_minimum_size = Vector2(300, 0)
+
+[node name="StartButton" type="Button" parent="VBox/NewGamePanel"]
+text = "新しい年代記を始める"
+
+[node name="HudPanel" type="VBoxContainer" parent="VBox"]
+visible = false
+
+[node name="StatusLabel" type="Label" parent="VBox/HudPanel"]
+text = "当主: ― "
+
+[node name="YearLabel" type="Label" parent="VBox/HudPanel"]
+text = "現在: 0年"
+
+[node name="ProgressLabel" type="Label" parent="VBox/HudPanel"]
+text = "伝説の都市建設進捗: 0.0%"
+
+[node name="ActionButtons" type="HBoxContainer" parent="VBox/HudPanel"]
+
+[node name="AdventureButton" type="Button" parent="VBox/HudPanel/ActionButtons"]
+text = "冒険する"
+
+[node name="ClearMonsterButton" type="Button" parent="VBox/HudPanel/ActionButtons"]
+text = "魔物を討伐"
+
+[node name="OpenChronicleButton" type="Button" parent="VBox/HudPanel/ActionButtons"]
+text = "年代記"
+
+[node name="OpenCharacterButton" type="Button" parent="VBox/HudPanel/ActionButtons"]
+text = "キャラクター"
+
+[node name="OpenGalleryButton" type="Button" parent="VBox/HudPanel/ActionButtons"]
+text = "肖像画廊"
+
+[node name="EndGenerationButton" type="Button" parent="VBox/HudPanel/ActionButtons"]
+text = "世代交代"
+
+[node name="ActionLog" type="RichTextLabel" parent="VBox/HudPanel"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 200)
+scroll_following = true
+bbcode_enabled = true
+text = "行動ログ"
+
+[connection signal="pressed" from="VBox/NewGamePanel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBox/HudPanel/ActionButtons/AdventureButton" to="." method="_on_adventure_button_pressed"]
+[connection signal="pressed" from="VBox/HudPanel/ActionButtons/ClearMonsterButton" to="." method="_on_clear_monster_button_pressed"]
+[connection signal="pressed" from="VBox/HudPanel/ActionButtons/OpenChronicleButton" to="." method="_on_open_chronicle_pressed"]
+[connection signal="pressed" from="VBox/HudPanel/ActionButtons/OpenCharacterButton" to="." method="_on_open_character_pressed"]
+[connection signal="pressed" from="VBox/HudPanel/ActionButtons/OpenGalleryButton" to="." method="_on_open_gallery_pressed"]
+[connection signal="pressed" from="VBox/HudPanel/ActionButtons/EndGenerationButton" to="." method="_on_end_generation_pressed"]

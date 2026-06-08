@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4genend0001"]
+
+[ext_resource type="Script" path="res://scenes/generation_end/GenerationEnd.gd" id="1_genend01"]
+
+[node name="GenerationEnd" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_genend01")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+
+[node name="TitleLabel" type="Label" parent="Panel/VBox"]
+text = "── 世代の終焉と継承 ──"
+theme_override_font_sizes/font_size = 22
+
+[node name="DeceasedLabel" type="Label" parent="Panel/VBox"]
+text = "故人情報を読み込み中..."
+
+[node name="SkillsSection" type="VBoxContainer" parent="Panel/VBox"]
+
+[node name="SectionTitle" type="Label" parent="Panel/VBox/SkillsSection"]
+text = "【継承するスキルを選ぶ】（最大3つ）"
+
+[node name="SkillsContainer" type="VBoxContainer" parent="Panel/VBox/SkillsSection"]
+
+[node name="ItemsSection" type="VBoxContainer" parent="Panel/VBox"]
+
+[node name="SectionTitle" type="Label" parent="Panel/VBox/ItemsSection"]
+text = "【継承するアイテムを選ぶ】（最大2つ）"
+
+[node name="ItemsContainer" type="VBoxContainer" parent="Panel/VBox/ItemsSection"]
+
+[node name="SelectionInfo" type="VBoxContainer" parent="Panel/VBox"]
+
+[node name="SelectedSkillsLabel" type="Label" parent="Panel/VBox/SelectionInfo"]
+text = "継承スキル: 0/3 選択"
+
+[node name="SelectedItemsLabel" type="Label" parent="Panel/VBox/SelectionInfo"]
+text = "継承アイテム: 0/2 選択"
+
+[node name="HeirSection" type="HBoxContainer" parent="Panel/VBox"]
+
+[node name="Label" type="Label" parent="Panel/VBox/HeirSection"]
+text = "後継者の名前（省略可）:"
+
+[node name="HeirNameInput" type="LineEdit" parent="Panel/VBox/HeirSection"]
+placeholder_text = "例: アルデン・二代目"
+custom_minimum_size = Vector2(250, 0)
+
+[node name="ConfirmButton" type="Button" parent="Panel/VBox"]
+text = "継承を確定して次の世代へ"
+
+[node name="SkipButton" type="Button" parent="Panel/VBox"]
+text = "何も継承せず次へ"
+
+[connection signal="pressed" from="Panel/VBox/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="Panel/VBox/SkipButton" to="." method="_on_skip_button_pressed"]
