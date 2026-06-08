@@ -8,54 +8,132 @@ anchor_bottom = 1.0
 script = ExtResource("1_genend01")
 
 [node name="Panel" type="PanelContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.1
+anchor_top = 0.04
+anchor_right = 0.9
+anchor_bottom = 0.96
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="Panel"]
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="TitleLabel" type="Label" parent="Panel/VBox"]
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="Panel/Margin/VBox"]
+layout_mode = 2
 text = "── 世代の終焉と継承 ──"
+horizontal_alignment = 1
 theme_override_font_sizes/font_size = 22
 
-[node name="DeceasedLabel" type="Label" parent="Panel/VBox"]
+[node name="DeceasedLabel" type="Label" parent="Panel/Margin/VBox"]
+layout_mode = 2
 text = "故人情報を読み込み中..."
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 3
 
-[node name="SkillsSection" type="VBoxContainer" parent="Panel/VBox"]
+[node name="Sep1" type="HSeparator" parent="Panel/Margin/VBox"]
+layout_mode = 2
 
-[node name="SectionTitle" type="Label" parent="Panel/VBox/SkillsSection"]
+[node name="Scroll" type="ScrollContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContent" type="VBoxContainer" parent="Panel/Margin/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="SkillsSection" type="VBoxContainer" parent="Panel/Margin/VBox/Scroll/ScrollContent"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SkillsSectionTitle" type="Label" parent="Panel/Margin/VBox/Scroll/ScrollContent/SkillsSection"]
+layout_mode = 2
 text = "【継承するスキルを選ぶ】（最大3つ）"
+theme_override_font_sizes/font_size = 15
 
-[node name="SkillsContainer" type="VBoxContainer" parent="Panel/VBox/SkillsSection"]
+[node name="SkillLimitLabel" type="Label" parent="Panel/Margin/VBox/Scroll/ScrollContent/SkillsSection"]
+layout_mode = 2
+visible = false
+text = "※ スキルは最大3つまでです。"
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
 
-[node name="ItemsSection" type="VBoxContainer" parent="Panel/VBox"]
+[node name="SkillsContainer" type="VBoxContainer" parent="Panel/Margin/VBox/Scroll/ScrollContent/SkillsSection"]
+layout_mode = 2
+theme_override_constants/separation = 2
 
-[node name="SectionTitle" type="Label" parent="Panel/VBox/ItemsSection"]
+[node name="ScrollSep" type="HSeparator" parent="Panel/Margin/VBox/Scroll/ScrollContent"]
+layout_mode = 2
+
+[node name="ItemsSection" type="VBoxContainer" parent="Panel/Margin/VBox/Scroll/ScrollContent"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ItemsSectionTitle" type="Label" parent="Panel/Margin/VBox/Scroll/ScrollContent/ItemsSection"]
+layout_mode = 2
 text = "【継承するアイテムを選ぶ】（最大2つ）"
+theme_override_font_sizes/font_size = 15
 
-[node name="ItemsContainer" type="VBoxContainer" parent="Panel/VBox/ItemsSection"]
+[node name="ItemLimitLabel" type="Label" parent="Panel/Margin/VBox/Scroll/ScrollContent/ItemsSection"]
+layout_mode = 2
+visible = false
+text = "※ アイテムは最大2つまでです。"
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
 
-[node name="SelectionInfo" type="VBoxContainer" parent="Panel/VBox"]
+[node name="ItemsContainer" type="VBoxContainer" parent="Panel/Margin/VBox/Scroll/ScrollContent"]
+layout_mode = 2
+theme_override_constants/separation = 2
 
-[node name="SelectedSkillsLabel" type="Label" parent="Panel/VBox/SelectionInfo"]
-text = "継承スキル: 0/3 選択"
+[node name="Sep2" type="HSeparator" parent="Panel/Margin/VBox"]
+layout_mode = 2
 
-[node name="SelectedItemsLabel" type="Label" parent="Panel/VBox/SelectionInfo"]
-text = "継承アイテム: 0/2 選択"
+[node name="SelectionInfo" type="VBoxContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
 
-[node name="HeirSection" type="HBoxContainer" parent="Panel/VBox"]
+[node name="SelectedSkillsLabel" type="Label" parent="Panel/Margin/VBox/SelectionInfo"]
+layout_mode = 2
+text = "継承スキル: 0 / 3 選択中"
 
-[node name="Label" type="Label" parent="Panel/VBox/HeirSection"]
+[node name="SelectedItemsLabel" type="Label" parent="Panel/Margin/VBox/SelectionInfo"]
+layout_mode = 2
+text = "継承アイテム: 0 / 2 選択中"
+
+[node name="HeirSection" type="HBoxContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Panel/Margin/VBox/HeirSection"]
+layout_mode = 2
 text = "後継者の名前（省略可）:"
+vertical_alignment = 1
 
-[node name="HeirNameInput" type="LineEdit" parent="Panel/VBox/HeirSection"]
+[node name="HeirNameInput" type="LineEdit" parent="Panel/Margin/VBox/HeirSection"]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "例: アルデン・二代目"
-custom_minimum_size = Vector2(250, 0)
 
-[node name="ConfirmButton" type="Button" parent="Panel/VBox"]
-text = "継承を確定して次の世代へ"
+[node name="Buttons" type="HBoxContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
 
-[node name="SkipButton" type="Button" parent="Panel/VBox"]
+[node name="SkipButton" type="Button" parent="Panel/Margin/VBox/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "何も継承せず次へ"
 
-[connection signal="pressed" from="Panel/VBox/ConfirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="Panel/VBox/SkipButton" to="." method="_on_skip_button_pressed"]
+[node name="ConfirmButton" type="Button" parent="Panel/Margin/VBox/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "継承を確定して次の世代へ"
+
+[connection signal="pressed" from="Panel/Margin/VBox/Buttons/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/Buttons/SkipButton" to="." method="_on_skip_button_pressed"]
