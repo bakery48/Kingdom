@@ -230,6 +230,7 @@ func _format_generation_entry(gen: Generation, is_active: bool = false) -> Strin
 
 func _create_generation(gen_id: int, gen_name: String) -> Generation:
 	var gen := Generation.new(gen_id, gen_name, total_years)
+	gen.max_age = randi_range(38, 65)
 	# Give first generation a starter skill
 	if gen_id == 1:
 		var starter := Skill.new(

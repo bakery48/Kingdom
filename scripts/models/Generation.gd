@@ -10,6 +10,7 @@ var equipped_items: Array[Item]
 var achievements: Array[String]
 var world_changes: Array[WorldChange]
 var play_time_seconds: float
+var max_age: int  # natural lifespan, set at generation creation
 
 
 func _init(
@@ -27,6 +28,7 @@ func _init(
 	achievements = []
 	world_changes = []
 	play_time_seconds = 0.0
+	max_age = 50
 
 
 func is_alive() -> bool:
@@ -40,8 +42,7 @@ func get_lifespan() -> int:
 
 
 func add_skill(skill: Skill) -> void:
-	# Enforce max 3 skills
-	if skills.size() < 3:
+	if skills.size() < 8:
 		skills.append(skill)
 
 
@@ -100,6 +101,7 @@ func to_dict() -> Dictionary:
 		"birth_year": birth_year,
 		"death_year": death_year,
 		"cause_of_death": cause_of_death,
+		"max_age": max_age,
 		"skills": skills_data,
 		"equipped_items": items_data,
 		"achievements": achievements,
@@ -116,6 +118,7 @@ static func from_dict(d: Dictionary) -> Generation:
 	)
 	gen.death_year = d.get("death_year", -1)
 	gen.cause_of_death = d.get("cause_of_death", "")
+	gen.max_age = d.get("max_age", 50)
 	gen.play_time_seconds = d.get("play_time_seconds", 0.0)
 
 	for ad in d.get("achievements", []):
