@@ -88,7 +88,7 @@ visible = false
 text = "※ アイテムは最大2つまでです。"
 theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
 
-[node name="ItemsContainer" type="VBoxContainer" parent="Panel/Margin/VBox/Scroll/ScrollContent"]
+[node name="ItemsContainer" type="VBoxContainer" parent="Panel/Margin/VBox/Scroll/ScrollContent/ItemsSection"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
