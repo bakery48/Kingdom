@@ -127,9 +127,9 @@ func _on_add_skill_button_pressed() -> void:
 	var skill_name := _skill_name_input.text.strip_edges()
 	if skill_name.is_empty():
 		return
-	var categories := ["combat", "exploration", "life"]
+	var categories: Array[String] = ["combat", "exploration", "life"]
 	var sel_id := _skill_cat_option.get_item_id(_skill_cat_option.selected)
-	var cat := categories[clamp(sel_id, 0, 2)]
+	var cat: String = categories[clamp(sel_id, 0, 2)]
 	var skill := Skill.new(
 		skill_name.to_lower().replace(" ", "_") + "_" + str(gen.id),
 		skill_name, 1, cat, -1
